@@ -1,4 +1,4 @@
-PROGRAM_SPACE equ 0x7e00
+PROGRAM_SPACE equ 0x8000
 
 readDisk:
     pusha
@@ -11,7 +11,7 @@ readDisk:
     mov bx, 0
     mov es, bx
     pop bx
-    mov bx, 0x7c00 + 512
+    mov bx, PROGRAM_SPACE
 
     int 0x13
     jc diskError
@@ -20,4 +20,5 @@ readDisk:
     ret
 
 diskError:
+
     jmp $
