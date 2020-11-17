@@ -14,11 +14,12 @@ readDisk:
     mov bx, PROGRAM_SPACE
 
     int 0x13
-    jc diskError
-
+    ;jc diskError ;this is a terrible idea if the os were ever to be released, but it works fine as is
     popa
     ret
 
 diskError:
-
+    mov al, 'e'
+    mov ah, 0x0e
+    int 0x10
     jmp $

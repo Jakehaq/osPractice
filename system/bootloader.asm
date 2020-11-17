@@ -25,7 +25,7 @@ ZeroSeg:
 
 
 Bootload:
-    mov al, 16 ;number of sectors to read, increase as initial file gets bigger, 512 bytes each
+    mov al, 32 ;number of sectors to read, increase as initial file gets bigger, 512 bytes each
     mov cl, 2
     call readDisk
     jmp PROGRAM_SPACE

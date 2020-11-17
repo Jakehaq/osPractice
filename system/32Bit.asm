@@ -52,6 +52,7 @@ start64Bit:
     mov rax, 0x1f201f201f201f20
     mov ecx, 500
     rep stosq
+    call _start
     jmp $
 
-times 8192 - ($-$$) db 0 ;make sure to pad file so it corresponds with size of read
+;times 4096 - ($-$$) db 0 ;make sure to pad file so it corresponds with size of read
