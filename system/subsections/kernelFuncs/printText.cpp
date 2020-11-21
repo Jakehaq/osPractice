@@ -1,8 +1,8 @@
 #pragma once
 #define VGA_MEMORY (unsigned char*) 0xb8000
 #define VGA_WIDTH 80
-#include "io.c"
-#include "typeDef.c"
+#include "io.cpp"
+#include "typeDef.cpp"
 
 u_int16 cursorPosition;
 
@@ -24,9 +24,21 @@ void printString(const char* str) {
     u_int16 index = cursorPosition;
 
     while (*pointr != 0) {
-        *(VGA_MEMORY + index*2) = *pointr;
+        
+        switch (*pointr)
+        {
+        case 10:
+            index += VGA_WIDTH;
+            break;
+        case 13:
+            index -= index % VGA_WIDTH;
+            break;
+        default:
+            *(VGA_MEMORY + index*2) = *pointr;
+            
+            index++;
+        }
         pointr++;
-        index++;
     }
     setCursorPosition(index);
 }
