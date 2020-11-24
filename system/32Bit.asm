@@ -48,10 +48,6 @@ startProtectedMode:
 [bits 64]
 [extern _start]
 start64Bit:
-    mov edi, 0xb8000
-    mov rax, 0x0f200f200f200f20
-    mov ecx, 500
-    rep stosq
     call _start
     jmp $
 
